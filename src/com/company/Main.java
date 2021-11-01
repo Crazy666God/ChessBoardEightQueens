@@ -15,7 +15,7 @@ public class Main {
     }
 
 
-
+    // внес изменения и создал отдельную ветку
 
     public static boolean solution(int count/*, int chessPiece*/) {
         if(count >= MAX_VALUE/* || chessPiece == 8*/) {

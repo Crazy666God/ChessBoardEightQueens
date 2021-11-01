@@ -18,7 +18,7 @@ public class Box {
             System.arraycopy(chessBoard[i], 0, this.chessBoard[i], 0, 8);
         }
     }
-
+// а так же тут всес свое гавно
     private static void printChessBoard(int[][] chessBoard) {
         for(int i = 0; i < 8; ++i) {
             for(int j = 0; j < 8; ++j) {
