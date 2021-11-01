@@ -7,40 +7,34 @@ public class Main {
 
     public static List<Box> listBox = new ArrayList<>();
     public static int[][] chessBoard = new int[8][8];
-    public static int MAX_VALUE = 64;
 
     public static void main(String[] args) {
-        solution(0);
-        printList();
+        solution(0, 0);
+        //printList();
+        System.out.printf("Итого = %d, варианта растановки ферзей\n", listBox.size());
     }
 
-
-
-
-    public static boolean solution(int count/*, int chessPiece*/) {
-        if(count >= MAX_VALUE/* || chessPiece == 8*/) {
-            printChessBoard(chessBoard);
-            System.out.println();
-            listBox.add(new Box(chessBoard));
+    public static boolean solution(int height, int chessPiece) {
+        if(height >= 8 || chessPiece >= 8) {
+            if(!checkingChessBoardInList(chessBoard)) {
+                listBox.add(new Box(chessBoard));
+                return false;
+            }
             clearChessBoard();
             return true;
         }
-        int height = count / 8;
-        //int width = count % 8;
-        for(int i = 0; i < 8; ++i) {
-            if (checkingForAnIntersection(height, i)) {
-                chessBoard[height][i] = 1;
-                if (solution(++count/*, ++chessPiece*/)) {
+        for(int width = 0; width < 8; ++width) {
+            if(checkingForAnIntersection(height, width)) {
+                chessBoard[height][width] = 1;
+                if(solution(height + 1, chessPiece + 1)) {
                     return true;
                 } else {
-                    chessBoard[height][i] = 0;
-                   // --chessPiece;
+                    chessBoard[height][width] = 0;
                 }
             }
         }
         return false;
     }
-
 
 
     public static boolean checkingForAnIntersection(int height, int width) {
@@ -113,6 +107,22 @@ public class Main {
                 chessBoard[i][j] = 0;
             }
         }
+    }
+
+    public static boolean checkingChessBoardInList(int[][] chessBoard) {
+        int size = listBox.size();
+        if(size <= 0) {
+            return false;
+        }
+        int[][] boardList = listBox.get(size - 1).getChessBoard();
+        for(int i = 0; i < 8; ++i) {
+            for(int j = 0; j < 8; ++j) {
+                if(chessBoard[i][j] != boardList[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
