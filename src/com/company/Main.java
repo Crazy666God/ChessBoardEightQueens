@@ -39,7 +39,7 @@ public class Main {
 
     public static boolean checkingForAnIntersection(int height, int width) {
         int i, j;
-        //проверка по вертикали
+        
         for(i = 0, j = width; i < 8; ++i) {
             if(i == height) {
                 continue;
@@ -48,7 +48,7 @@ public class Main {
                 return false;
             }
         }
-        //проверка по горизотале
+       
         for(i = height, j = 0; j < 8; ++j) {
             if(j == width) {
                 continue;
@@ -57,7 +57,7 @@ public class Main {
                 return false;
             }
         }
-        //проверка диагонали с лева на право
+        
         for(i = height - 1, j = width - 1; i >= 0 && j >= 0; --i, --j) {
             if(chessBoard[i][j] == 1) {
                 return false;
@@ -68,7 +68,7 @@ public class Main {
                 return false;
             }
         }
-        //проверка диагонали с права на лево
+        
         for(i = height - 1, j = width + 1; i >= 0 && j < 8; --i, ++j) {
             if(chessBoard[i][j] == 1) {
                 return false;
